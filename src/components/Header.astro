@@ -1,0 +1,103 @@
+---
+const navItems = [
+    {
+        title: "Blog",
+        label: "blog",
+        url: "/Main",
+    },
+    // {
+    //     title: "Libros",
+    //     label: "libros",
+    //     url: "Libros",
+    // },
+    {
+        title: "Recursos",
+        label: "recursos",
+        url: "/#recursos",
+    },
+    {
+        title: "Comunidad",
+        label: "comunidad",
+        url: "https://discord.gg/J8wYD6yn",
+    },
+]
+---
+
+<header
+    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-4"
+>
+    <a href="/#"><img src="images/logo.webp" alt="StreamByte logotype." width="132" class="px-2 hidden sm:block"></a>
+    <nav
+        class="flex px-3 py-1 text-sm font-semibold rounded-full"
+    >
+        {
+            navItems.map((link) => (
+                <a 
+                    class="relative block px-2 transition duration-200 text-[#ddede2] font-bold hover:text-[#36f2b3]"
+                    aria-label={link.label}
+                    href={link.url}
+                    target={link.url.startsWith("http") ? "_blank" : "_self"}
+                    rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                    {link.title}
+                </a>
+            ))
+        }
+    </nav>
+</header>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+      const sections = document.querySelectorAll("section")
+      const navItems = document.querySelectorAll("header nav a")
+  
+      const callback = (entries: any[]) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navItems.forEach((item) => {
+              if (item.getAttribute("aria-label") == entry.target.id) {
+                item.classList.add("text-yellow-500")
+              } else {
+                item.classList.remove("text-yellow-500")
+              }
+            })
+          }
+        })
+      }
+  
+      const observer = new IntersectionObserver(callback, {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.3,
+      })
+  
+      sections.forEach((section) => {
+        observer.observe(section)
+      })
+  
+      // Cleanup function
+      document.onvisibilitychange = () => {
+        if (document.visibilityState === "hidden") {
+          observer.disconnect()
+        } else {
+          sections.forEach((section) => {
+            observer.observe(section)
+          })
+        }
+      }
+    })
+  </script>
+  
+  <style>
+    nav {
+      animation: nav-shadown 1s linear both;
+      animation-timeline: scroll();
+      animation-range: 0 100px;
+    }
+  
+    @keyframes nav-shadown {
+      to {
+        @apply shadow-lg ring-1 backdrop-blur bg-[#36f2b3]/40 ring-[#36f2b3]/10;
+      }
+    }
+  </style>

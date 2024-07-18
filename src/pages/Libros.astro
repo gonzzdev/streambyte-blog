@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import Boton from '../components/Boton.astro';
+---
+<Layout title="Libros recomendados para aprender a programar, crear aplicaciones y todo lo relacionado a la industria tech.">
+    <SectionContainer>
+        <section>
+            <div class="max-w-screen-xl px-4 py-20 mx-auto lg:px-6 sm:py-24">
+              <div class="max-w-3xl mx-auto text-center">
+
+                <h2 class="text-2xl font-bold uppercase leading-tight tracking-tight text-[#ddede2]">
+                  Libros recomendados por la comunidad
+                </h2>
+
+                <p class="text-sm text-[#e8e4ea]/80 sm:text-md py-4">
+                  Lista de libros para aprender desarrollo de software. Curados y discutidos por la comunidad.
+                </p>
+
+                <a href="https://discord.gg/J8wYD6yn" target="_blank" rel="noopener">
+                    <Boton>Servidor de Discord</Boton>
+                </a>
+                  
+              </div>
+            </div>
+        </section>
+    </SectionContainer>        
+</Layout>

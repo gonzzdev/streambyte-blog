@@ -1,0 +1,31 @@
+---
+// Crear página de blog y añadir links
+const ARTICULOS = [
+    {
+        link: "https://www.youtube.com/watch?v=M6pC9QmbBC8",
+        image: "https://i.ytimg.com/vi/M6pC9QmbBC8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAw9heZ97voB7XR7Suh-Jiv5Bqiiw",
+    },
+]
+---
+
+<div class="flex flex-col">
+    {
+      ARTICULOS.map(({ image, link }) => (
+      <article class="flex group items-center justify-center">
+    <div class="w-fit ">
+      <div 
+          class="relative flex items-center  
+          transition duration-500 ease-in-out transform 
+          shadow-xl overflow-clip rounded-xl 
+          sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl 
+          lg:border-[2px] lg:border-[#ddede2]/40 lg:hover:border-[#ddede2]/80">
+  
+        <a href={link} target="_blank" rel="noopener">
+          <img alt="Project screenshot" class="object-cover object-top w-full sm:w-fit h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" src={image} />
+        </a>
+      </div>
+    </div>
+  </article>
+      ))
+    }
+  </div>
